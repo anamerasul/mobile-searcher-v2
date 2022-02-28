@@ -2,6 +2,10 @@
 
 // searchMobileByName api function add
 
+const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row')
+
+const loadMoreDiv=document.getElementById('load-more-div')
+loadMoreDiv.style.display='none'
 const searchMobileByName=(searchInputText)=>{
 
         // searchMobileByName api fetch
@@ -30,6 +34,7 @@ document.getElementById(searchbtnid).addEventListener('click', function(e){
         searchMobileByName(searchInputvalue)
 
         searchInput.value='';
+        displaytwentyPhoneRowDiv.innerHTML='';
 })
 
 }
@@ -42,7 +47,8 @@ const DisplayAllPhone=(phone)=>{
         const allPhones=phone.data
         const notFound=document.getElementById('not-found')
 
-        const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row')
+        console.log(allPhones.length)
+
         if(phone.status===false){
                 notFound.innerHTML=`<p class="not-found-color">your mobile is not found please search right name</p>`
         }
@@ -59,22 +65,46 @@ const DisplayAllPhone=(phone)=>{
 
                         console.log(phone)
 
-                        colDiv.innerHTML=`<div class="card">
-                          <img src="..." class="card-img-top" alt="...">
+                        colDiv.innerHTML=`<div class="card mx-auto text-center">
+                          <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
                           <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
+                            <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
+                            <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
+                            <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
                           </div>
                         </div>`
 
                         displaytwentyPhoneRowDiv.appendChild(colDiv)
                 }
 
-        console.log(phone.data)
+              
 
+        console.log(phone.data)
+      
         notFound.textContent='';
 
 }
+
+if(allPhones.length>20){
+
+        loadMoreDiv.style.display='block'
+
+
+
+   const RestTwentyPhone=allPhones.slice(20)   
+   console.log('all phone')   
+   
+   console.log(allPhones.slice(20))
+
+   for(const RestPhone of RestTwentyPhone){
+
+        console.log(RestPhone)
+   }
+}
+
+// displaytwentyPhoneRowDiv.textContent=``;
+
 }
 
 searchButtonHander('search-btn','search-input')
