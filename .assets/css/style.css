@@ -30,3 +30,7 @@ header{
         box-shadow: none !important;
         outline: none;
 }
+
+.not-found-color{
+        color:brown;
+}
