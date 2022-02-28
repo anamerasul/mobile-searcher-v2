@@ -8,3 +8,25 @@
 header{
         background-color:gainsboro;
 }
+
+/* search part css */
+
+.search-input:focus{
+        box-shadow: none !important;
+        outline: none !important;
+}
+.search-input:hover{
+   
+        box-shadow: none !important;
+        outline: none;
+}
+.search-btn:focus{
+ 
+        box-shadow: none !important;
+        outline: none !important;
+}
+.search-btn:hover{
+        
+        box-shadow: none !important;
+        outline: none;
+}
