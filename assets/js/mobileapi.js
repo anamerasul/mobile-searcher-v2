@@ -6,6 +6,32 @@ const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row
 
 const loadMoreDiv=document.getElementById('load-more-div')
 loadMoreDiv.style.display='none'
+
+// function displayPhone 
+
+const DisplayPhonecommonFunction=(phone)=>{
+
+        const colDiv=document.createElement('div');
+        colDiv.classList.add('col')
+
+        console.log(phone)
+
+        colDiv.innerHTML=`<div class="card mx-auto text-center">
+          <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
+          <div class="card-body">
+            <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
+            <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
+            <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
+            <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
+          </div>
+        </div>`
+
+        displaytwentyPhoneRowDiv.appendChild(colDiv);
+
+        
+
+
+}
 const searchMobileByName=(searchInputText)=>{
 
         // searchMobileByName api fetch
@@ -60,22 +86,24 @@ const DisplayAllPhone=(phone)=>{
                 // })
                 for(const phone of phoneslice){
 
-                        const colDiv=document.createElement('div');
-                        colDiv.classList.add('col')
+                        DisplayPhonecommonFunction(phone);
 
-                        console.log(phone)
+                        // const colDiv=document.createElement('div');
+                        // colDiv.classList.add('col')
 
-                        colDiv.innerHTML=`<div class="card mx-auto text-center">
-                          <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
-                          <div class="card-body">
-                            <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
-                            <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
-                            <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
-                            <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
-                          </div>
-                        </div>`
+                        // console.log(phone)
 
-                        displaytwentyPhoneRowDiv.appendChild(colDiv)
+                        // colDiv.innerHTML=`<div class="card mx-auto text-center">
+                        //   <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
+                        //   <div class="card-body">
+                        //     <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
+                        //     <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
+                        //     <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
+                        //     <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
+                        //   </div>
+                        // </div>`
+
+                        // displaytwentyPhoneRowDiv.appendChild(colDiv);
                 }
 
               
@@ -86,21 +114,63 @@ const DisplayAllPhone=(phone)=>{
 
 }
 
-if(allPhones.length>20){
+if(allPhones.length<20){
+        loadMoreDiv.style.display='none'
+}
+
+else if(allPhones.length>20){
 
         loadMoreDiv.style.display='block'
 
 
+        const loadMoreFunction=(loadmorebtn)=>{
+                document.getElementById(loadmorebtn).addEventListener('click',function(e){
+                        console.log('load more click')
 
-   const RestTwentyPhone=allPhones.slice(20)   
-   console.log('all phone')   
+
+                        const RestTwentyPhone=allPhones.slice(20)   
+                        console.log('all phone')   
+                        
+                        console.log(allPhones.slice(20))
+                     
+                        for(const phone of RestTwentyPhone){
+                     
+                                DisplayPhonecommonFunction(phone);
+                        //  const colDiv=document.createElement('div');
+                        //  colDiv.classList.add('col')
+
+                        // console.log(phone)
+
+                        // colDiv.innerHTML=`<div class="card mx-auto text-center">
+                        //   <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
+                        //   <div class="card-body">
+                        //     <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
+                        //     <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
+                        //     <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
+                        //     <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
+                        //   </div>
+                        // </div>`
+
+                        // displaytwentyPhoneRowDiv.appendChild(colDiv)
+                        }
+                })
+
+        }
+
+        loadMoreFunction('loadmore-btn')
+
+        
+
+
+//    const RestTwentyPhone=allPhones.slice(20)   
+//    console.log('all phone')   
    
-   console.log(allPhones.slice(20))
+//    console.log(allPhones.slice(20))
 
-   for(const RestPhone of RestTwentyPhone){
+//    for(const RestPhone of RestTwentyPhone){
 
-        console.log(RestPhone)
-   }
+//         console.log(RestPhone)
+//    }
 }
 
 // displaytwentyPhoneRowDiv.textContent=``;
