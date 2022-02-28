@@ -7,7 +7,7 @@ const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row
 const loadMoreDiv=document.getElementById('load-more-div')
 loadMoreDiv.style.display='none'
 
-// function displayPhone 
+// function display Phone  by common fuction 
 
 const DisplayPhonecommonFunction=(phone)=>{
 
@@ -22,15 +22,32 @@ const DisplayPhonecommonFunction=(phone)=>{
             <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
             <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
             <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
-            <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
+            <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Remove</a>
           </div>
         </div>`
 
         displaytwentyPhoneRowDiv.appendChild(colDiv);
 
-        
 
 
+
+
+
+}
+// delete button function
+
+const deleteButtonFunction=(deleteclass)=>{
+
+const deleteButtons=document.getElementsByClassName(deleteclass)
+
+for(const deleteBtn of deleteButtons){
+
+        deleteBtn.addEventListener('click', function(e){
+                console.log(e.target.parentNode.parentNode.parentNode)
+
+                e.target.parentNode.parentNode.parentNode.style.display='none'
+        })
+}
 }
 const searchMobileByName=(searchInputText)=>{
 
@@ -65,6 +82,7 @@ document.getElementById(searchbtnid).addEventListener('click', function(e){
 
 }
 
+searchButtonHander('search-btn','search-input')
 
 // display all mobile by searchName function add
 const DisplayAllPhone=(phone)=>{
@@ -78,12 +96,12 @@ const DisplayAllPhone=(phone)=>{
         if(phone.status===false){
                 notFound.innerHTML=`<p class="not-found-color">your mobile is not found please search right name</p>`
         }
+
+        
         else{
                 // get only 20 phone
                 const phoneslice=allPhones.slice(0,20)
-                // const phones=allPhones.slice(0,19).forEach(phone=>{
-                //         console.log(phone)
-                // })
+            
                 for(const phone of phoneslice){
 
                         DisplayPhonecommonFunction(phone);
@@ -105,6 +123,9 @@ const DisplayAllPhone=(phone)=>{
 
                         // displaytwentyPhoneRowDiv.appendChild(colDiv);
                 }
+                deleteButtonFunction('delete-btn')
+               
+}
 
               
 
@@ -112,7 +133,7 @@ const DisplayAllPhone=(phone)=>{
       
         notFound.textContent='';
 
-}
+
 
 if(allPhones.length<20){
         loadMoreDiv.style.display='none'
@@ -136,6 +157,7 @@ else if(allPhones.length>20){
                         for(const phone of RestTwentyPhone){
                      
                                 DisplayPhonecommonFunction(phone);
+                                
                         //  const colDiv=document.createElement('div');
                         //  colDiv.classList.add('col')
 
@@ -153,28 +175,29 @@ else if(allPhones.length>20){
 
                         // displaytwentyPhoneRowDiv.appendChild(colDiv)
                         }
+
+                        deleteButtonFunction('delete-btn')
+                        
                 })
+
+                
 
         }
 
-        loadMoreFunction('loadmore-btn')
 
-        
+      
 
+       
+        loadMoreFunction('loadmore-btn');
 
-//    const RestTwentyPhone=allPhones.slice(20)   
-//    console.log('all phone')   
-   
-//    console.log(allPhones.slice(20))
-
-//    for(const RestPhone of RestTwentyPhone){
-
-//         console.log(RestPhone)
-//    }
+ 
 }
+
 
 // displaytwentyPhoneRowDiv.textContent=``;
 
 }
 
-searchButtonHander('search-btn','search-input')
+
+
+
