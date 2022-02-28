@@ -103,6 +103,7 @@ const DisplayAllPhone=(phone)=>{
 
         const allPhones=phone.data
         const notFound=document.getElementById('not-found')
+       
 
         console.log(allPhones.length)
 
@@ -113,7 +114,9 @@ const DisplayAllPhone=(phone)=>{
 
         else{
                 // get only 20 phone
+                const totalPhoneCount=allPhones.length
                 const phoneslice=allPhones.slice(0,20)
+                document.getElementById('total-found').innerHTML=`<h4>Total ${totalPhoneCount} phone found </h4>`;
 
                 // function phoneSliceMap
 
