@@ -221,6 +221,19 @@ else if(allPhones.length>20){
 //         .then(data=>phoneDetails(data[0]))
 // }
 
+
+
+
+
+
+
+
+
+
+
+const DisplayFullDetails=document.getElementById('display-full-details');
+
+DisplayFullDetails.style.display="none"
 // search phone by id function
 // searchBy ID function
 const serachById=(searchid)=>{
@@ -243,7 +256,7 @@ const DisplayFulldetails=(phone)=>{
         console.log(phone)
 
         if(phone.status===true){
-
+                DisplayFullDetails.style.display="block"
         console.log(phone.data.brand);
         }
 
