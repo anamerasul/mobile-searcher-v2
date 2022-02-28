@@ -1,11 +1,28 @@
-// search btn id
 
-// searchMobileByName api function add
 
 const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row')
 
 const loadMoreDiv=document.getElementById('load-more-div')
 loadMoreDiv.style.display='none'
+
+// searchMobileByName api function add
+const searchMobileByName=(searchInputText)=>{
+
+        // searchMobileByName api fetch
+        const url=`https://openapi.programming-hero.com/api/phones?search=${searchInputText}`;
+
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>DisplayAllPhone(data))
+}
+
+
+
+
+
+
+// search details by id
+
 
 // function display Phone  by common fuction 
 
@@ -49,15 +66,7 @@ for(const deleteBtn of deleteButtons){
         })
 }
 }
-const searchMobileByName=(searchInputText)=>{
 
-        // searchMobileByName api fetch
-        const url=`https://openapi.programming-hero.com/api/phones?search=${searchInputText}`;
-
-        fetch(url)
-        .then(res=>res.json())
-        .then(data=>DisplayAllPhone(data))
-}
 
 // searchButtonHander add
 
@@ -74,7 +83,7 @@ document.getElementById(searchbtnid).addEventListener('click', function(e){
 
         console.log(searchInputvalue)
 
-        searchMobileByName(searchInputvalue)
+        searchMobileByName(searchInputvalue);
 
         searchInput.value='';
         displaytwentyPhoneRowDiv.innerHTML='';
@@ -97,7 +106,7 @@ const DisplayAllPhone=(phone)=>{
                 notFound.innerHTML=`<p class="not-found-color">your mobile is not found please search right name</p>`
         }
 
-        
+
         else{
                 // get only 20 phone
                 const phoneslice=allPhones.slice(0,20)
@@ -135,7 +144,7 @@ const DisplayAllPhone=(phone)=>{
 
 
 
-if(allPhones.length<20){
+if(allPhones.length<=20){
         loadMoreDiv.style.display='none'
 }
 
@@ -198,6 +207,53 @@ else if(allPhones.length>20){
 
 }
 
+
+
+// search mobile by id
+
+// const searchMobileById=(searchid)=>{
+
+//         // searchMobileByName api fetch
+//         const url=`https://openapi.programming-hero.com/api/phone/${searchid}`;
+
+//         fetch(url)
+//         .then(res=>res.json())
+//         .then(data=>phoneDetails(data[0]))
+// }
+
+// search phone by id function
+// searchBy ID function
+const serachById=(searchid)=>{
+        const url=`https://openapi.programming-hero.com/api/phone/${searchid}`;
+
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>DisplayFulldetails(data))
+
+}
+
+// function phoneDetails
+const phoneDetails=(id)=>{
+        serachById(id)
+}
+
+// function displayFullDetails
+const DisplayFulldetails=(phone)=>{
+
+        console.log(phone)
+
+        if(phone.status===true){
+
+        console.log(phone.data.brand);
+        }
+
+        else{
+
+
+        }
+
+
+}
 
 
 
