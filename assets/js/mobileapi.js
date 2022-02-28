@@ -5,6 +5,10 @@ const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row
 const loadMoreDiv=document.getElementById('load-more-div')
 loadMoreDiv.style.display='none'
 
+const DisplayFullDetails=document.getElementById('display-full-details');
+
+DisplayFullDetails.style.display="none"
+
 // searchMobileByName api function add
 const searchMobileByName=(searchInputText)=>{
 
@@ -110,29 +114,39 @@ const DisplayAllPhone=(phone)=>{
         else{
                 // get only 20 phone
                 const phoneslice=allPhones.slice(0,20)
-            
-                for(const phone of phoneslice){
 
+                // function phoneSliceMap
+
+                const phoneSliceMap =(phoneslice)=>phoneslice.map(phone=>{
                         DisplayPhonecommonFunction(phone);
 
-                        // const colDiv=document.createElement('div');
-                        // colDiv.classList.add('col')
+                        deleteButtonFunction('delete-btn')
 
-                        // console.log(phone)
+                })
+            
+                // for(const phone of phoneslice){
 
-                        // colDiv.innerHTML=`<div class="card mx-auto text-center">
-                        //   <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
-                        //   <div class="card-body">
-                        //     <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
-                        //     <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
-                        //     <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
-                        //     <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
-                        //   </div>
-                        // </div>`
+                //         DisplayPhonecommonFunction(phone);
 
-                        // displaytwentyPhoneRowDiv.appendChild(colDiv);
-                }
-                deleteButtonFunction('delete-btn')
+                //         // const colDiv=document.createElement('div');
+                //         // colDiv.classList.add('col')
+
+                //         // console.log(phone)
+
+                //         // colDiv.innerHTML=`<div class="card mx-auto text-center">
+                //         //   <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
+                //         //   <div class="card-body">
+                //         //     <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
+                //         //     <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
+                //         //     <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
+                //         //     <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
+                //         //   </div>
+                //         // </div>`
+
+                //         // displaytwentyPhoneRowDiv.appendChild(colDiv);
+                // }
+                phoneSliceMap(phoneslice)
+                
                
 }
 
@@ -156,6 +170,7 @@ else if(allPhones.length>20){
         const loadMoreFunction=(loadmorebtn)=>{
                 document.getElementById(loadmorebtn).addEventListener('click',function(e){
                         console.log('load more click')
+                        DisplayFullDetails.style.display="none"
 
 
                         const RestTwentyPhone=allPhones.slice(20)   
@@ -163,29 +178,39 @@ else if(allPhones.length>20){
                         
                         console.log(allPhones.slice(20))
                      
-                        for(const phone of RestTwentyPhone){
+                        // for(const phone of RestTwentyPhone){
                      
-                                DisplayPhonecommonFunction(phone);
+                        //         DisplayPhonecommonFunction(phone);
                                 
-                        //  const colDiv=document.createElement('div');
-                        //  colDiv.classList.add('col')
+                        // //  const colDiv=document.createElement('div');
+                        // //  colDiv.classList.add('col')
 
-                        // console.log(phone)
+                        // // console.log(phone)
 
-                        // colDiv.innerHTML=`<div class="card mx-auto text-center">
-                        //   <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
-                        //   <div class="card-body">
-                        //     <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
-                        //     <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
-                        //     <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
-                        //     <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
-                        //   </div>
-                        // </div>`
+                        // // colDiv.innerHTML=`<div class="card mx-auto text-center">
+                        // //   <img src="${phone.image}" class="card-img-top img-fluid w-75 mx-auto" alt="...">
+                        // //   <div class="card-body">
+                        // //     <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
+                        // //     <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
+                        // //     <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
+                        // //     <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Delete</a>
+                        // //   </div>
+                        // // </div>`
 
-                        // displaytwentyPhoneRowDiv.appendChild(colDiv)
-                        }
+                        // // displaytwentyPhoneRowDiv.appendChild(colDiv)
+                        // }
 
-                        deleteButtonFunction('delete-btn')
+                        // function phoneSliceforEach 
+
+                        const phoneSliceforEach =(phoneslice)=>phoneslice.forEach(phone=>{
+                                DisplayPhonecommonFunction(phone);
+        
+                                deleteButtonFunction('delete-btn')
+        
+                        })
+
+                        
+                        phoneSliceforEach(RestTwentyPhone)
                         
                 })
 
@@ -202,6 +227,8 @@ else if(allPhones.length>20){
  
 }
 
+
+// else if(allPhones.length===)
 
 // displaytwentyPhoneRowDiv.textContent=``;
 
@@ -231,9 +258,7 @@ else if(allPhones.length>20){
 
 
 
-const DisplayFullDetails=document.getElementById('display-full-details');
 
-DisplayFullDetails.style.display="none"
 // search phone by id function
 // searchBy ID function
 const serachById=(searchid)=>{
