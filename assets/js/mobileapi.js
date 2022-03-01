@@ -1,4 +1,3 @@
-// common 
 const totalFoundPhone=document.getElementById('found');
 const errorMsgDiv=document.getElementById('error');
 const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row');
@@ -8,7 +7,6 @@ const spinnerDiv=document.getElementById('spinner');
 spinnerDiv.style.display="none";
 loadMoreDiv.style.display='none';
 DisplayFullDetails.style.display="none";
-
 
 
 // search  by name haldler
@@ -153,7 +151,7 @@ const releaseDateCustommessage="No release date found"
 const sensorsInput=phone.data.mainFeatures.sensors
 DisplayFullDetails.style.display="block"
         // console.log(phone.data.brand);
-DisplayFullDetails.innerHTML=` <div class="card m-3 p-4" >
+DisplayFullDetails.innerHTML=`<div class="card m-3 p-4" >
 <h2 class="text-uppercase text-dark text-center my-3 py-2">Details of <span class="text-success fw"> ${phone.data.name}</span></h2>
 <div class="row g-0">
 <div class="col-md-6">
@@ -163,7 +161,7 @@ DisplayFullDetails.innerHTML=` <div class="card m-3 p-4" >
 <div class="card-body text-start">
 <h3 class="text-start">Brand : ${phone.data.brand}</h3>
 <h4 class="text-start">Name : ${phone.data.name}</h4>
-<h4 class"text-start">Release date:"${phone.data.releaseDate?phone.data.releaseDate:releaseDateCustommessage}"</h4>
+<h4 class"text-start">Release Date : "${phone.data.releaseDate?phone.data.releaseDate:releaseDateCustommessage}"</h4>
 <!-- main feature section--->
 <div class="main-feature">
 <h5 class="text-start">Main feature</h5>
@@ -181,15 +179,10 @@ DisplayFullDetails.innerHTML=` <div class="card m-3 p-4" >
 <a id="remove-btn" class="btn btn btn-danger border-radious text-dark remove-btn rounded rounded-pill px-4 py-1 fs-5">Remove details</a>
 </div>        
 </div>`
+
 const othersFeatureDiv=document.getElementById('others');
 const othersFeature =phone.data.others
-const wlan=phone.data.others.WLAN
-const bluetooth=phone.data.others.Bluetooth
-const gps=phone.data.others.GPS
-const nfc=phone.data.others.NFC
-const radio=phone.data.others.Radio
-const usb=phone.data.others.USB
-const othersFeaturecustomMsg=`not found`
+
 
 //console.log(othersFeature)
 const uldivicesensor =document.getElementById('d-sensor');
@@ -212,8 +205,21 @@ uldivicesensor.appendChild(li)
 else{
 uldivicesensor.innerHTML=`<h3>no sensor found</h3>`
 }
-
+// others feature part with custom message function
+// custom Sms Function
+const customSmsFunction=(msg)=>{
+const customMsg=msg ; 
+return customMsg;
+}
 if(othersFeature!==null && othersFeature!==undefined){
+const wlan=phone.data.others.WLAN
+const bluetooth=phone.data.others.Bluetooth
+const gps=phone.data.others.GPS
+const nfc=phone.data.others.NFC
+const radio=phone.data.others.Radio
+const usb=phone.data.others.USB
+const othersFeaturecustomMsg=customSmsFunction(`not found`)
+
 othersFeatureDiv.innerHTML=`<h5 class="text-start"> <span class="fs-5 fw-normal">others:</span></h5>
 <p class="text-start p-0 m-1"> <span class="fs-6">WLAN:</span> "${wlan?wlan:othersFeaturecustomMsg}"</p>
 <p class="text-start p-0 m-1"> <span class="fs-6">Bluetooth":</span> "${bluetooth?bluetooth:othersFeaturecustomMsg}"</p>
@@ -225,15 +231,13 @@ othersFeatureDiv.innerHTML=`<h5 class="text-start"> <span class="fs-5 fw-normal"
 }
 
 else{
-othersFeatureDiv.innerHTML=`<h4>others feature not found</h4>`
+const msg=customSmsFunction(`data not found`)
+othersFeatureDiv.innerHTML=`<h5 class="text-start"> <span class="fs-4 fw-normal">others:</span><span class="text-dark fw-bolder fs-3"> ${msg}</span></h5>`
 }
 // remove details function
 const removeDetails =(removebtnid)=>{
 document.getElementById(removebtnid).addEventListener('click',function(e){
 // console.log("remove")
-
-
-
 DisplayFullDetails.innerHTML=``;
 })
 }
@@ -244,5 +248,4 @@ DisplayFullDetails.innerHTML=`<h4>Not found</h4>`
 }
 
 }
-
 
