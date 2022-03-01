@@ -40,15 +40,30 @@
                 <div class="row">
                         <div class="col-8 mx-auto text-center">
                                 <div class="d-flex">
-                                        <input id="search-input" class="form-control me-2 p-3 search-input text-center mx-auto" type="search" placeholder="Search your mobile" aria-label="Search">
-                                        <button id="search-btn" class="btn btn-success search-btn px-4" type="submit">Search</button>
+                                        <input id="search-input" class="form-control me-2 p-3 search-input fs-4 text-center mx-auto" type="search" placeholder="Search your mobile" aria-label="Search">
+                                        <button id="search-btn" class="btn btn-primary search-btn px-4 fs-4 text-white" type="submit">Search</button>
                                 </div>
                                 <div id="not-found" class="mx-auto text-center"></div>
                                 <div id="error" class ="mx-auto text-center text-danger"></div>
                                 <div id="found" class ="mx-auto text-center text-info my-3"></div>
+                                <!-- spinner section div -->
+                                <div id="spinner" class="spinner">
+                                        <div class="spinner-grow text-success" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                              </div>
+                                              <div class="spinner-grow text-danger" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                              </div>
+                                              <div class="spinner-grow text-warning" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                </div>
                         </div>
                 </div>
         </div>
+        
+
+        
 
         <!-- display full details of phone section -->
         <div class="container">
@@ -105,14 +120,13 @@
         <div id="load-more-div" class="container my-2 py-2">
                 <div class="row">
                         <div class="col-4 mx-auto">
-                                <a onclick="loadMoretwo()" id="loadmore-btn" class="btn btn-primary px-3 py-2">load more</a>
+                                <a onclick="loadMoretwo()" id="loadmore-btn" class="btn btn-lg rounded rounded-pill btn-info px-3 py-2 text-white">load more</a>
                         </div>
                 </div>
         </div>
 
 </main>
 
-   
 
 
         <!-- bootstrap bundle.js -->

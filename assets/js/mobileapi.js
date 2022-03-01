@@ -1,14 +1,18 @@
+const spinnerDiv=document.getElementById('spinner');
 
+spinnerDiv.style.display="none";
 
-const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row')
+const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row');
 
 const loadMoreDiv=document.getElementById('load-more-div')
-loadMoreDiv.style.display='none'
+loadMoreDiv.style.display='none';
 
 const DisplayFullDetails=document.getElementById('display-full-details');
 
-DisplayFullDetails.style.display="none"
-const totalFoundPhone=document.getElementById('found')
+DisplayFullDetails.style.display="none";
+const totalFoundPhone=document.getElementById('found');
+
+const errorMsgDiv=document.getElementById('error')
 
 // searchMobileByName api function add
 const searchMobileByName=(searchInputText)=>{
@@ -20,14 +24,6 @@ const searchMobileByName=(searchInputText)=>{
         .then(res=>res.json())
         .then(data=>DisplayAllPhone(data))
 }
-
-
-
-
-
-
-
-
 
 // function display Phone  by common fuction 
 
@@ -43,9 +39,10 @@ const DisplayPhonecommonFunction=(phone)=>{
           <div class="card-body">
             <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
             <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
-            <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-info border-radious rounded rounded-pill px-3 py-1 m-1 text-white">Explore</a>
-            <a id="delete-btn" class="btn  btn-danger delete-btn px-3 py-1 m-1 btn-lg border-radious rounded rounded-pill">Delete</a>
+            
           </div>
+          <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-info border-radious rounded rounded-pill px-3 py-1 m-1 text-white">Explore</a>
+            <a id="delete-btn" class="btn  btn-danger delete-btn px-3 py-1 m-1 btn-lg border-radious rounded rounded-pill">Delete</a>
         </div>`
 
         displaytwentyPhoneRowDiv.appendChild(colDiv);
@@ -67,7 +64,7 @@ for(const deleteBtn of deleteButtons){
         deleteBtn.addEventListener('click', function(e){
                 console.log(e.target.parentNode.parentNode.parentNode)
 
-                e.target.parentNode.parentNode.parentNode.style.display='none'
+                e.target.parentNode.parentNode.style.display='none'
         })
 }
 }
@@ -79,6 +76,13 @@ const searchButtonHander=(searchbtnid,searchinputid)=>{
 
 document.getElementById(searchbtnid).addEventListener('click', function(e){
 
+        spinnerDiv.style.display="block";
+
+
+       
+
+
+
         console.log('click')
         // get input value 
 
@@ -86,13 +90,28 @@ document.getElementById(searchbtnid).addEventListener('click', function(e){
 
         const searchInputvalue=searchInput.value;
 
+        
+
         console.log(searchInputvalue)
+
+         // error handling from search
+        if(searchInputvalue===''){
+                
+
+                errorMsgDiv.innerHTML=`<h4>nothing to found</h4>`
+        
+        }
+
+        else{ }
 
         searchMobileByName(searchInputvalue);
 
+       
         searchInput.value='';
         displaytwentyPhoneRowDiv.innerHTML='';
-        totalFoundPhone.innerHTML=`<h4 class="text-danger">your search this "${searchInputvalue}" phone not found in your server</h4>`;
+        totalFoundPhone.innerHTML=`<h4 class="text-danger">your search this "${searchInputvalue}" not found in our server</h4>`;
+
+        
 })
 
 }
@@ -124,6 +143,8 @@ const DisplayAllPhone=(phone)=>{
 
                 const phoneSliceMap =(phoneslice)=>phoneslice.map(phone=>{
                         DisplayPhonecommonFunction(phone);
+                        spinnerDiv.style.display="none";
+                        errorMsgDiv.innerHTML=``;
 
                         deleteButtonFunction('delete-btn')
 
@@ -176,6 +197,7 @@ else if(allPhones.length>20){
                 document.getElementById(loadmorebtn).addEventListener('click',function(e){
                         console.log('load more click')
                         DisplayFullDetails.style.display="none"
+                        spinnerDiv.style.display="block";
 
 
                         const RestTwentyPhone=allPhones.slice(20)   
@@ -209,6 +231,8 @@ else if(allPhones.length>20){
 
                         const phoneSliceforEach =(phoneslice)=>phoneslice.forEach(phone=>{
                                 DisplayPhonecommonFunction(phone);
+                                spinnerDiv.style.display="none";
+                                errorMsgDiv.innerHTML=``;
         
                                 deleteButtonFunction('delete-btn')
         
@@ -290,10 +314,10 @@ const DisplayFulldetails=(phone)=>{
         DisplayFullDetails.style.display="block"
         console.log(phone.data.brand);
         DisplayFullDetails.innerHTML=` <div class="card m-3 p-4" >
-        <h2 class="text-uppercase text-success text-center my-2 py-2">Details of ${phone.data.name}</h2>
+        <h2 class="text-uppercase text-dark text-center my-3 py-2">Details of ${phone.data.name}</h2>
         <div class="row g-0">
           <div class="col-md-6">
-            <img src="${phone.data.image}" class="img-fluid rounded-start" alt="...">
+            <img src="${phone.data.image}" class="img-fluid w-75" alt="...">
           </div>
           <div class="col-md-6">
             <div class="card-body text-start">
@@ -303,10 +327,10 @@ const DisplayFulldetails=(phone)=>{
               <!-- main feature section--->
                 <div class="main-feature">
                         <h5 class="text-start">Main feature</h5>
-                        <p class="text-start p-0 m-1"> <span class="fs-5">Storage:</span> "${phone.data.mainFeatures.storage?phone.data.mainFeatures.storage:custommessage}"</p>
-                        <p class="text-start p-0 m-1"><span class="fs-5">Display-size :</span> "${phone.data.mainFeatures.displaySize?phone.data.mainFeatures.displaySize:custommessage}"</p>
-                        <p class="text-start p-0 m-1"> <span class="fs-5">Chipset :</span> "${phone.data.mainFeatures.chipSet?phone.data.mainFeatures.chipSet:custommessage}"</p>
-                        <p class="text-start p-0 m-1"> <span class="fs-5">Memory :</span> "${phone.data.mainFeatures.memory?phone.data.mainFeatures.memory:custommessage}"</p>
+                        <p class="text-start p-0 m-0"> <span class="fs-5">Storage:</span> "${phone.data.mainFeatures.storage?phone.data.mainFeatures.storage:custommessage}"</p>
+                        <p class="text-start p-0 m-0"><span class="fs-5">Display-size :</span> "${phone.data.mainFeatures.displaySize?phone.data.mainFeatures.displaySize:custommessage}"</p>
+                        <p class="text-start p-0 m-0"> <span class="fs-5">Chipset :</span> "${phone.data.mainFeatures.chipSet?phone.data.mainFeatures.chipSet:custommessage}"</p>
+                        <p class="text-start p-0 m-0"> <span class="fs-5">Memory :</span> "${phone.data.mainFeatures.memory?phone.data.mainFeatures.memory:custommessage}"</p>
                         <!-- sensor  part start -->
                         <ul class="list-group text-start p-0 m-1" id="d-sensor" > <span class="ul-sensor text-dark fs-5">Sensor:</span></ul>
                 </div>
@@ -321,6 +345,7 @@ const DisplayFulldetails=(phone)=>{
 
           <a id="remove-btn" class="btn btn-xl btn-warning border-radious rounded rounded-pill px-4 py-1 fs-5">Remove details</a>
         </div>
+        
       </div>`
 
       const othersFeatureDiv=document.getElementById('others');
@@ -383,11 +408,19 @@ else{
 
 // remove details function
 
-document.getElementById('remove-btn').addEventListener('click',function(e){
+const removeDetails =(removebtnid)=>{
 
-        console.log("remove")
-        DisplayFullDetails.innerHTML=``;
-})
+        document.getElementById(removebtnid).addEventListener('click',function(e){
+
+                // console.log("remove")
+                DisplayFullDetails.innerHTML=``;
+        })
+
+}
+
+removeDetails('remove-btn')
+
+
 
 }
 
