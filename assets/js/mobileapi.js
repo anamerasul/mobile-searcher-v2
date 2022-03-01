@@ -31,7 +31,7 @@ colDiv.innerHTML=`<div class="card mx-auto text-center">
 <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
 <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
 </div>
-<a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-primary border-radious rounded rounded-pill px-3 py-1 m-1 text-white">Explore</a>
+<a id="explore-btn"  href="#display-details-container" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-primary border-radious rounded rounded-pill px-3 py-1 m-1 text-white">Explore</a>
 <a id="delete-btn" class="btn btn-danger delete-btn px-3 py-1 m-1 btn-lg border-radious rounded rounded-pill">Delete</a>
 </div>`
 displaytwentyPhoneRowDiv.appendChild(colDiv);
