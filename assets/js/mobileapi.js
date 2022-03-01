@@ -167,7 +167,7 @@ const DisplayFulldetails=(phone)=>{
         DisplayFullDetails.style.display="block"
         console.log(phone.data.brand);
         DisplayFullDetails.innerHTML=` <div class="card m-3 p-4" >
-        <h2 class="text-uppercase text-dark text-center my-3 py-2">Details of ${phone.data.name}</h2>
+        <h2 class="text-uppercase text-dark text-center my-3 py-2">Details of <span class="text-success fw-bolder"> ${phone.data.name}</span></h2>
         <div class="row g-0">
           <div class="col-md-6">
             <img src="${phone.data.image}" class="img-fluid w-75" alt="...">
