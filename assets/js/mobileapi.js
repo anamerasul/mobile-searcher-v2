@@ -8,6 +8,7 @@ loadMoreDiv.style.display='none'
 const DisplayFullDetails=document.getElementById('display-full-details');
 
 DisplayFullDetails.style.display="none"
+const totalFoundPhone=document.getElementById('found')
 
 // searchMobileByName api function add
 const searchMobileByName=(searchInputText)=>{
@@ -25,7 +26,7 @@ const searchMobileByName=(searchInputText)=>{
 
 
 
-// search details by id
+
 
 
 // function display Phone  by common fuction 
@@ -42,8 +43,8 @@ const DisplayPhonecommonFunction=(phone)=>{
           <div class="card-body">
             <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
             <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
-            <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-info px-2 py-2 m-1">Explore</a>
-            <a id="delete-btn" class="btn btn-danger delete-btn px-2 py-2 m-1">Remove</a>
+            <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-info border-radious rounded rounded-pill px-4 py-2 m-1 text-white">Explore</a>
+            <a id="delete-btn" class="btn  btn-danger delete-btn px-2 py-2 m-1 btn-lg border-radious rounded rounded-pill">Remove</a>
           </div>
         </div>`
 
@@ -91,6 +92,7 @@ document.getElementById(searchbtnid).addEventListener('click', function(e){
 
         searchInput.value='';
         displaytwentyPhoneRowDiv.innerHTML='';
+        totalFoundPhone.innerHTML=`<h4 class="text-danger">your search this "${searchInputvalue}" phone not found in your server</h4>`;
 })
 
 }
@@ -116,7 +118,7 @@ const DisplayAllPhone=(phone)=>{
                 // get only 20 phone
                 const totalPhoneCount=allPhones.length
                 const phoneslice=allPhones.slice(0,20)
-                document.getElementById('total-found').innerHTML=`<h4>Total ${totalPhoneCount} phone found </h4>`;
+                totalFoundPhone.innerHTML=`<h4>Total ${totalPhoneCount} phone found </h4>`;
 
                 // function phoneSliceMap
 
@@ -261,7 +263,7 @@ else if(allPhones.length>20){
 
 
 
-
+// search details by id
 // search phone by id function
 // searchBy ID function
 const serachById=(searchid)=>{
