@@ -8,6 +8,9 @@ const spinnerDiv=document.getElementById('spinner');
 spinnerDiv.style.display="none";
 loadMoreDiv.style.display='none';
 DisplayFullDetails.style.display="none";
+
+
+
 // search  by name haldler
 // searchMobileByName api function add
 const searchMobileByName=(searchInputText)=>{
@@ -121,6 +124,20 @@ phoneSpliceforEach(RestTwentyPhone);
 loadMoreFunction('loadmore-btn');
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //search phone by id function implement
 // search details by id
 // search phone by id function
@@ -189,22 +206,22 @@ if(sensorsInput !==null && sensorsInput !==undefined){
 let count =0;
 for(const sensors of sensorsInput){
  count++;
-const li =document.createElement('li')''
-li.classList.add('list-group-item');
-li.classList.add('custom-li');
-li.classList.add('text-start');
+const li =document.createElement('li')
+li.classList.add('list-group-item')
+li.classList.add('custom-li')
+li.classList.add('text-start')
 // console.log(li)
 // console.log(sensors)
-li.innerHTML=` ${count} : ${sensors} `;
+li.innerHTML=` ${count} : ${sensors} `
 // li.innerHTML=`${sensors}`
-uldivicesensor.appendChild(li);
+uldivicesensor.appendChild(li)
 }
 }
 else{
 uldivicesensor.innerHTML=`<h3>no sensor found</h3>`
 }
-// others feature part
-if(othersFeature!==null && othersFeature!==undefined){       
+
+if(othersFeature!==null && othersFeature!==undefined){
 othersFeatureDiv.innerHTML=`<h5 class="text-start"> <span class="fs-5 fw-normal">others:</span></h5>
 <p class="text-start p-0 m-1"> <span class="fs-6">WLAN:</span> "${wlan?wlan:othersFeaturecustomMsg}"</p>
 <p class="text-start p-0 m-1"> <span class="fs-6">Bluetooth":</span> "${bluetooth?bluetooth:othersFeaturecustomMsg}"</p>
@@ -217,19 +234,28 @@ othersFeatureDiv.innerHTML=`<h5 class="text-start"> <span class="fs-5 fw-normal"
 else{
 othersFeatureDiv.innerHTML=`<h4>others feature not found</h4>`
 }
+
 // remove details function
 const removeDetails =(removebtnid)=>{
 document.getElementById(removebtnid).addEventListener('click',function(e){
 // console.log("remove")
 DisplayFullDetails.innerHTML=``;
 })
-
 }
 removeDetails('remove-btn')
+
+
+
 }
-else{
-DisplayFullDetails.innerHTML=`<h4>Not found</h4>`  
-}
+
+       
+
+        else{
+                DisplayFullDetails.innerHTML=`<h4>Not found</h4>`  
+
+        }
+
+
 }
 
 
