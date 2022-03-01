@@ -44,18 +44,21 @@ deleteBtn.addEventListener('click', function(e){
 // console.log(e.target.parentNode.parentNode.parentNode)
 e.target.parentNode.parentNode.style.display='none'
         })
+        
 }
+
 }
 
 // searchButtonHander add
 const searchButtonHander=(searchbtnid,searchinputid)=>{
 document.getElementById(searchbtnid).addEventListener('click', function(e){
 spinnerDiv.style.display="block";
-// console.log('click')
+
 // get input value 
 const searchInput=document.getElementById(searchinputid);
 const searchInputvalue=searchInput.value;
-// console.log(searchInputvalue);
+
+
 // error handling from search
 if(searchInputvalue===''){
 errorMsgDiv.innerHTML=`<h4>nothing to found</h4>`        
@@ -74,10 +77,10 @@ DisplayFullDetails.innerHTML=``  ;
 searchButtonHander('search-btn','search-input')
 // display all mobile by searchName function add
 const DisplayAllPhone=(phone)=>{
-// console.log(phone)
+
 const allPhones=phone.data;
 const notFound=document.getElementById('not-found');
-// console.log(allPhones.length)
+
 if(phone.status===false){
 notFound.innerHTML=`<p class="not-found-color">your mobile is not found please search right name</p>`
 }
@@ -95,23 +98,21 @@ deleteButtonFunction('delete-btn')
 })
 phoneSliceMap(phoneslice)
 }
-// console.log(phone.data)
+
 notFound.innerHTML=``;
 if(allPhones.length<=20){
 loadMoreDiv.style.display='none'
 }
+// load more than 20 phone
 else if(allPhones.length>20){
 loadMoreDiv.style.display='block'
 // loadmore function
 const loadMoreFunction=(loadmorebtn)=>{
 document.getElementById(loadmorebtn).addEventListener('click',function(e){
-// console.log('load more click')
 DisplayFullDetails.style.display="none"
 spinnerDiv.style.display="block";
 // show rest of twenty phone
 const RestTwentyPhone=allPhones.splice(20)   
-// console.log('all phone')   
-// console.log(allPhones.splice(20))
 // function Resttwenty   phoneSpliceforEach 
 const phoneSpliceforEach =(phoneslice)=>phoneslice.forEach(phone=>{
 DisplayPhonecommonFunction(phone);
@@ -145,13 +146,12 @@ serachById(id)
 
 // function displayFullDetails
 const DisplayFulldetails=(phone)=>{
-        // console.log(phone)
+
 if(phone.status===true){
 const custommessage="no"
 const releaseDateCustommessage="No release date found"
 const sensorsInput=phone.data.mainFeatures.sensors
 DisplayFullDetails.style.display="block"
-        // console.log(phone.data.brand);
 DisplayFullDetails.innerHTML=`<div class="card m-3 p-4" >
 <h2 class="text-uppercase text-dark text-center my-3 py-2">Details of <span class="text-success fw"> ${phone.data.name}</span></h2>
 <div class="row g-0">
@@ -184,8 +184,8 @@ DisplayFullDetails.innerHTML=`<div class="card m-3 p-4" >
 const othersFeatureDiv=document.getElementById('others');
 const othersFeature =phone.data.others
 
-
-//console.log(othersFeature)
+// sensor and others feature
+//sensor
 const uldivicesensor =document.getElementById('d-sensor');
 if(sensorsInput !==null && sensorsInput !==undefined){
 let count =0;
@@ -195,10 +195,7 @@ const li =document.createElement('li')
 li.classList.add('list-group-item')
 li.classList.add('custom-li')
 li.classList.add('text-start')
-// console.log(li)
-// console.log(sensors)
 li.innerHTML=` ${count} : ${sensors} `
-// li.innerHTML=`${sensors}`
 uldivicesensor.appendChild(li)
 }
 }
@@ -212,6 +209,7 @@ const customSmsFunction=(msg)=>{
 const customMsg=msg ; 
 return customMsg;
 }
+// others Feature
 if(othersFeature!==null && othersFeature!==undefined){
 const wlan=phone.data.others.WLAN
 const bluetooth=phone.data.others.Bluetooth
@@ -238,7 +236,6 @@ othersFeatureDiv.innerHTML=`<h5 class="text-start"> <span class="fs-4 fw-normal"
 // remove details function
 const removeDetails =(removebtnid)=>{
 document.getElementById(removebtnid).addEventListener('click',function(e){
-// console.log("remove")
 DisplayFullDetails.innerHTML=``;
 })
 }
@@ -249,6 +246,5 @@ DisplayFullDetails.innerHTML=`<h4>Not found</h4>`
 }
 
 }
-
 
 
