@@ -129,26 +129,15 @@ loadMoreFunction('loadmore-btn');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // search details by id
 // search phone by id function
 // searchBy ID function
 const serachById=(searchid)=>{
+//display details of a mobile api through id
 const url=`https://openapi.programming-hero.com/api/phone/${searchid}`;
-        fetch(url)
-        .then(res=>res.json())
-        .then(data=>DisplayFulldetails(data))
+fetch(url)
+.then(res=>res.json())
+.then(data=>DisplayFulldetails(data))
 }
 // function phoneDetails
 const phoneDetails=(id)=>{
