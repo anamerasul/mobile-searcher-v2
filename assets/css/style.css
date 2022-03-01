@@ -47,3 +47,14 @@ header{
         color:rgb(29, 25, 25);
         padding:4px 0px;
 }
+
+/* remove button css */
+
+.remove-btn{
+        color:whitesmoke !important;
+}
+
+.remove-btn:hover{
+        background-color:wheat !important;
+        color:red !important;
+}

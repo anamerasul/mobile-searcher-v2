@@ -65,7 +65,8 @@ else{ }
 searchMobileByName(searchInputvalue);
 searchInput.value='';
 displaytwentyPhoneRowDiv.innerHTML='';
-totalFoundPhone.innerHTML=`<h4 class="text-danger">your search this "${searchInputvalue}" not found in our server</h4>`;        
+totalFoundPhone.innerHTML=`<h4 class="text-danger">your search this "${searchInputvalue}" not found in our server</h4>`;
+DisplayFullDetails.innerHTML=``  ;      
 })
 }
 searchButtonHander('search-btn','search-input')
@@ -188,7 +189,7 @@ DisplayFullDetails.innerHTML=` <div class="card m-3 p-4" >
 </div>
 </div>
 </div>
-<a id="remove-btn" class="btn btn btn-warning border-radious rounded rounded-pill px-4 py-1 fs-5">Remove details</a>
+<a id="remove-btn" class="btn btn btn-danger border-radious text-dark remove-btn rounded rounded-pill px-4 py-1 fs-5">Remove details</a>
 </div>        
 </div>`
 const othersFeatureDiv=document.getElementById('others');
@@ -241,6 +242,9 @@ othersFeatureDiv.innerHTML=`<h4>others feature not found</h4>`
 const removeDetails =(removebtnid)=>{
 document.getElementById(removebtnid).addEventListener('click',function(e){
 // console.log("remove")
+
+
+
 DisplayFullDetails.innerHTML=``;
 })
 }
