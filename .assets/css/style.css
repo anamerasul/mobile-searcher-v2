@@ -34,3 +34,21 @@ header{
 .not-found-color{
         color:brown;
 }
+
+
+/* main-feature part css from js */
+
+.main-feature h5{
+        /* text-align:center; */
+}
+.main-feature p{
+        /* text-align:left; */
+}
+
+/* sensor part css which create on js */
+
+.custom-li{
+        border:none;
+        /* text-align:left; */
+        color:rgb(29, 25, 25);
+}
