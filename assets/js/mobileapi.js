@@ -1,3 +1,4 @@
+// some common variable
 const totalFoundPhone=document.getElementById('found');
 const errorMsgDiv=document.getElementById('error');
 const displaytwentyPhoneRowDiv=document.getElementById('display-twenty-phone-row');
@@ -59,7 +60,10 @@ const searchInputvalue=searchInput.value;
 if(searchInputvalue===''){
 errorMsgDiv.innerHTML=`<h4>nothing to found</h4>`        
 }
-else{ }
+else{
+errorMsgDiv.innerHTML=``
+totalFoundPhone.innerHTML=``;
+}
 searchMobileByName(searchInputvalue);
 searchInput.value='';
 displaytwentyPhoneRowDiv.innerHTML='';
@@ -123,9 +127,6 @@ phoneSpliceforEach(RestTwentyPhone);
 loadMoreFunction('loadmore-btn');
 }
 }
-
-
-
 
 // search details by id
 // search phone by id function
@@ -248,4 +249,6 @@ DisplayFullDetails.innerHTML=`<h4>Not found</h4>`
 }
 
 }
+
+
 
