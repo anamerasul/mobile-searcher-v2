@@ -8,9 +8,6 @@ const spinnerDiv=document.getElementById('spinner');
 spinnerDiv.style.display="none";
 loadMoreDiv.style.display='none';
 DisplayFullDetails.style.display="none";
-
-
-
 // search  by name haldler
 // searchMobileByName api function add
 const searchMobileByName=(searchInputText)=>{
@@ -124,167 +121,115 @@ phoneSpliceforEach(RestTwentyPhone);
 loadMoreFunction('loadmore-btn');
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//search phone by id function implement
 // search details by id
 // search phone by id function
 // searchBy ID function
 const serachById=(searchid)=>{
-        const url=`https://openapi.programming-hero.com/api/phone/${searchid}`;
-
-        fetch(url)
-        .then(res=>res.json())
-        .then(data=>DisplayFulldetails(data))
-
+const url=`https://openapi.programming-hero.com/api/phone/${searchid}`;
+fetch(url)
+.then(res=>res.json())
+.then(data=>DisplayFulldetails(data))
 }
-
 // function phoneDetails
 const phoneDetails=(id)=>{
-        serachById(id)
+serachById(id)
 }
-
 // function displayFullDetails
 const DisplayFulldetails=(phone)=>{
-        console.log(phone)
-        if(phone.status===true){
-        const custommessage="no"
-        const releaseDateCustommessage="No release date found"
-        const sensorsInput=phone.data.mainFeatures.sensors
-        DisplayFullDetails.style.display="block"
-        console.log(phone.data.brand);
-        DisplayFullDetails.innerHTML=` <div class="card m-3 p-4" >
-        <h2 class="text-uppercase text-dark text-center my-3 py-2">Details of <span class="text-success fw-bolder"> ${phone.data.name}</span></h2>
-        <div class="row g-0">
-          <div class="col-md-6">
-            <img src="${phone.data.image}" class="img-fluid w-75" alt="...">
-          </div>
-          <div class="col-md-6">
-            <div class="card-body text-start">
-              <h3 class="text-start">Brand : ${phone.data.brand}</h3>
-              <h4 class="text-start">Name : ${phone.data.name}</h4>
-              <h4 class"text-start">Release date:"${phone.data.releaseDate?phone.data.releaseDate:releaseDateCustommessage}"</h4>
-              <!-- main feature section--->
-                <div class="main-feature">
-                        <h5 class="text-start">Main feature</h5>
-                        <p class="text-start p-0 m-0"> <span class="fs-5">Storage:</span> "${phone.data.mainFeatures.storage?phone.data.mainFeatures.storage:custommessage}"</p>
-                        <p class="text-start p-0 m-0"><span class="fs-5">Display-size :</span> "${phone.data.mainFeatures.displaySize?phone.data.mainFeatures.displaySize:custommessage}"</p>
-                        <p class="text-start p-0 m-0"> <span class="fs-5">Chipset :</span> "${phone.data.mainFeatures.chipSet?phone.data.mainFeatures.chipSet:custommessage}"</p>
-                        <p class="text-start p-0 m-0"> <span class="fs-5">Memory :</span> "${phone.data.mainFeatures.memory?phone.data.mainFeatures.memory:custommessage}"</p>
-                        <!-- sensor  part start -->
-                        <ul class="list-group text-start p-0 m-1" id="d-sensor" > <span class="ul-sensor text-dark fs-5">Sensor:</span></ul>
-                </div>
-                <div class="others" id="others">
+// console.log(phone)
+if(phone.status===true){
+const custommessage="no"
+const releaseDateCustommessage="No release date found"
+const sensorsInput=phone.data.mainFeatures.sensors
+DisplayFullDetails.style.display="block"
+// console.log(phone.data.brand);
+// display full details section html in js
+DisplayFullDetails.innerHTML=` <div class="card m-3 p-4" >
+<h2 class="text-uppercase text-dark text-center my-3 py-2">Details of <span class="text-success fw-bolder"> ${phone.data.name}</span></h2>
+<div class="row g-0">
+<div class="col-md-6">
+<img src="${phone.data.image}" class="img-fluid w-75" alt="...">
+</div>
+<div class="col-md-6">
+<div class="card-body text-start">
+<h3 class="text-start">Brand : ${phone.data.brand}</h3>
+<h4 class="text-start">Name : ${phone.data.name}</h4>
+<h4 class"text-start">Release date:"${phone.data.releaseDate?phone.data.releaseDate:releaseDateCustommessage}"</h4>
+<!-- main feature section--->
+<div class="main-feature">
+<h5 class="text-start">Main feature</h5>
+<p class="text-start p-0 m-0"> <span class="fs-5">Storage:</span> "${phone.damainFeatures.storage?phone.data.mainFeatures.storage:custommessage}"</p>
+<p class="text-start p-0 m-0"><span class="fs-5">Display-size :</span> "${phone.damainFeatures.displaySize?phone.data.mainFeatures.displaySize:custommessage}"</p>
+<p class="text-start p-0 m-0"> <span class="fs-5">Chipset :</span> "${phone.damainFeatures.chipSet?phone.data.mainFeatures.chipSet:custommessage}"</p>
+<p class="text-start p-0 m-0"> <span class="fs-5">Memory :</span> "${phone.damainFeatures.memory?phone.data.mainFeatures.memory:custommessage}"</p>
+<!-- sensor  part start -->
+<ul class="list-group text-start p-0 m-1" id="d-sensor" > <span class="ul-sensor text-dark fs-5">Sensor:</span></ul>
+</div>
+<div class="others" id="others">
+</div>
+</div>
+</div>
+<a id="remove-btn" class="btn btn-xl btn-warning border-radious rounded rounded-pill px-4 py-1 fs-5">Remove details</a>
+</div>
+</div>`
 
-                </div>
-               
-              
-            </div>
-            
-          </div>
-
-          <a id="remove-btn" class="btn btn-xl btn-warning border-radious rounded rounded-pill px-4 py-1 fs-5">Remove details</a>
-        </div>
-        
-      </div>`
-
-      const othersFeatureDiv=document.getElementById('others');
-      const othersFeature =phone.data.others
-
-      const wlan=phone.data.others.WLAN
-      const bluetooth=phone.data.others.Bluetooth
-      const gps=phone.data.others.GPS
-      const nfc=phone.data.others.NFC
-      const radio=phone.data.others.Radio
-      const usb=phone.data.others.USB
-
-      const othersFeaturecustomMsg=`not found`
-
-      console.log(othersFeature)
-
-      const uldivicesensor =document.getElementById('d-sensor');
-
-      if(sensorsInput !==null && sensorsInput !==undefined){
-
-     
-      let count =0;
-
-      for(const sensors of sensorsInput){
-              count++;
-        const li =document.createElement('li')
-        li.classList.add('list-group-item')
-        li.classList.add('custom-li')
-        li.classList.add('text-start')
-        console.log(li)
-        console.log(sensors)
-        li.innerHTML=` ${count} : ${sensors} `
-        // li.innerHTML=`${sensors}`
-        uldivicesensor.appendChild(li)
-
-      }
-
-   
+const othersFeatureDiv=document.getElementById('others');
+const othersFeature =phone.data.others
+const wlan=phone.data.others.WLAN
+const bluetooth=phone.data.others.Bluetooth
+const gps=phone.data.others.GPS
+const nfc=phone.data.others.NFC
+const radio=phone.data.others.Radio
+const usb=phone.data.others.USB
+const othersFeaturecustomMsg=`not found`;
+//       console.log(othersFeature)
+const uldivicesensor =document.getElementById('d-sensor');
+if(sensorsInput !==null && sensorsInput !==undefined){
+let count =0;
+for(const sensors of sensorsInput){
+ count++;
+const li =document.createElement('li')''
+li.classList.add('list-group-item');
+li.classList.add('custom-li');
+li.classList.add('text-start');
+// console.log(li)
+// console.log(sensors)
+li.innerHTML=` ${count} : ${sensors} `;
+// li.innerHTML=`${sensors}`
+uldivicesensor.appendChild(li);
 }
-
+}
 else{
-        uldivicesensor.innerHTML=`<h3>no sensor found</h3>`
+uldivicesensor.innerHTML=`<h3>no sensor found</h3>`
 }
-
-if(othersFeature!==null && othersFeature!==undefined){
-        othersFeatureDiv.innerHTML=`<h5 class="text-start"> <span class="fs-5 fw-normal">others:</span></h5>
-                                                <p class="text-start p-0 m-1"> <span class="fs-6">WLAN:</span> "${wlan?wlan:othersFeaturecustomMsg}"</p>
-                                                <p class="text-start p-0 m-1"> <span class="fs-6">Bluetooth":</span> "${bluetooth?bluetooth:othersFeaturecustomMsg}"</p>
-                                                <p class="text-start p-0 m-1"> <span class="fs-6">GPS":</span> "${gps?gps:othersFeaturecustomMsg}"</p>
-                                                <p class="text-start p-0 m-1"> <span class="fs-6">NFC":</span> "${nfc?nfc:othersFeaturecustomMsg}"</p>
-                                                <p class="text-start p-0 m-1"> <span class="fs-6">Radio":</span> "${radio?radio:othersFeaturecustomMsg}"</p>
-                                                <p class="text-start p-0 m-1"> <span class="fs-6">USB":</span> "${usb?usb:othersFeaturecustomMsg}"</p>
-                                        `
-
+// others feature part
+if(othersFeature!==null && othersFeature!==undefined){       
+othersFeatureDiv.innerHTML=`<h5 class="text-start"> <span class="fs-5 fw-normal">others:</span></h5>
+<p class="text-start p-0 m-1"> <span class="fs-6">WLAN:</span> "${wlan?wlan:othersFeaturecustomMsg}"</p>
+<p class="text-start p-0 m-1"> <span class="fs-6">Bluetooth":</span> "${bluetooth?bluetooth:othersFeaturecustomMsg}"</p>
+<p class="text-start p-0 m-1"> <span class="fs-6">GPS":</span> "${gps?gps:othersFeaturecustomMsg}"</p>
+<p class="text-start p-0 m-1"> <span class="fs-6">NFC":</span> "${nfc?nfc:othersFeaturecustomMsg}"</p>
+<p class="text-start p-0 m-1"> <span class="fs-6">Radio":</span> "${radio?radio:othersFeaturecustomMsg}"</p>
+<p class="text-start p-0 m-1"> <span class="fs-6">USB":</span> "${usb?usb:othersFeaturecustomMsg}"</p>
+`
 }
-
 else{
-        othersFeatureDiv.innerHTML=`<h4>others feature not found</h4>`
+othersFeatureDiv.innerHTML=`<h4>others feature not found</h4>`
 }
-
 // remove details function
-
 const removeDetails =(removebtnid)=>{
-
-        document.getElementById(removebtnid).addEventListener('click',function(e){
-
-                // console.log("remove")
-                DisplayFullDetails.innerHTML=``;
-        })
+document.getElementById(removebtnid).addEventListener('click',function(e){
+// console.log("remove")
+DisplayFullDetails.innerHTML=``;
+})
 
 }
-
 removeDetails('remove-btn')
-
-
-
 }
-
-       
-
-        else{
-                DisplayFullDetails.innerHTML=`<h4>Not found</h4>`  
-
-        }
-
-
+else{
+DisplayFullDetails.innerHTML=`<h4>Not found</h4>`  
+}
 }
 
 
