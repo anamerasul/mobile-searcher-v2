@@ -43,8 +43,8 @@ const DisplayPhonecommonFunction=(phone)=>{
           <div class="card-body">
             <h4 class="card-title">Brand:<span>${phone.brand}</span></h4>
             <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
-            <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-info border-radious rounded rounded-pill px-4 py-2 m-1 text-white">Explore</a>
-            <a id="delete-btn" class="btn  btn-danger delete-btn px-2 py-2 m-1 btn-lg border-radious rounded rounded-pill">Remove</a>
+            <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-info border-radious rounded rounded-pill px-3 py-1 m-1 text-white">Explore</a>
+            <a id="delete-btn" class="btn  btn-danger delete-btn px-3 py-1 m-1 btn-lg border-radious rounded rounded-pill">Delete</a>
           </div>
         </div>`
 
@@ -313,10 +313,13 @@ const DisplayFulldetails=(phone)=>{
                 <div class="others" id="others">
 
                 </div>
-
+               
               
             </div>
+            
           </div>
+
+          <a id="remove-btn" class="btn btn-xl btn-warning border-radious rounded rounded-pill px-4 py-1 fs-5">Remove details</a>
         </div>
       </div>`
 
@@ -377,6 +380,14 @@ if(othersFeature!==null && othersFeature!==undefined){
 else{
         othersFeatureDiv.innerHTML=`<h4>others feature not found</h4>`
 }
+
+// remove details function
+
+document.getElementById('remove-btn').addEventListener('click',function(e){
+
+        console.log("remove")
+        DisplayFullDetails.innerHTML=``;
+})
 
 }
 
