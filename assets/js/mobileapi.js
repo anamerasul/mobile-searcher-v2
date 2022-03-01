@@ -41,7 +41,7 @@ const DisplayPhonecommonFunction=(phone)=>{
             <h5 class=" ">Name :<span>${phone.phone_name}</span></h5>
             
           </div>
-          <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-info border-radious rounded rounded-pill px-3 py-1 m-1 text-white">Explore</a>
+          <a id="explore-btn" onclick="phoneDetails('${phone.slug}')" class="btn btn-lg btn-primary border-radious rounded rounded-pill px-3 py-1 m-1 text-white">Explore</a>
             <a id="delete-btn" class="btn  btn-danger delete-btn px-3 py-1 m-1 btn-lg border-radious rounded rounded-pill">Delete</a>
         </div>`
 
@@ -139,7 +139,7 @@ const DisplayAllPhone=(phone)=>{
                 const phoneslice=allPhones.slice(0,20)
                 totalFoundPhone.innerHTML=`<h4>Total ${totalPhoneCount} phone found </h4>`;
 
-                // function phoneSliceMap
+                // function phoneSpliceMap
 
                 const phoneSliceMap =(phoneslice)=>phoneslice.map(phone=>{
                         DisplayPhonecommonFunction(phone);
@@ -200,10 +200,10 @@ else if(allPhones.length>20){
                         spinnerDiv.style.display="block";
 
 
-                        const RestTwentyPhone=allPhones.slice(20)   
+                        const RestTwentyPhone=allPhones.splice(20)   
                         console.log('all phone')   
                         
-                        console.log(allPhones.slice(20))
+                        console.log(allPhones.splice(20))
                      
                         // for(const phone of RestTwentyPhone){
                      
@@ -227,19 +227,20 @@ else if(allPhones.length>20){
                         // // displaytwentyPhoneRowDiv.appendChild(colDiv)
                         // }
 
-                        // function phoneSliceforEach 
+                        // function Resttwenty   phoneSpliceforEach 
 
-                        const phoneSliceforEach =(phoneslice)=>phoneslice.forEach(phone=>{
+                        const phoneSpliceforEach =(phoneslice)=>phoneslice.forEach(phone=>{
                                 DisplayPhonecommonFunction(phone);
                                 spinnerDiv.style.display="none";
                                 errorMsgDiv.innerHTML=``;
+                               
         
                                 deleteButtonFunction('delete-btn')
         
                         })
-
-                        
-                        phoneSliceforEach(RestTwentyPhone)
+                        spinnerDiv.style.display="none";
+                        loadMoreDiv.style.display='none';
+                        phoneSpliceforEach(RestTwentyPhone)
                         
                 })
 
